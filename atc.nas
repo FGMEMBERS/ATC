@@ -32,7 +32,6 @@ setlistener("/sim/signals/fdm-initialized", func {
     ATC_target_hdg.setDoubleValue(0);
     RADAR.getNode("factor").setDoubleValue((1/RADAR.getNode("range").getValue())*10);
     FDM_ON =1;
-    props.globals.getNode("/sim/multiplay/callsign",1).setValue("ATC");
     settimer(update_systems, 1);
     });
 

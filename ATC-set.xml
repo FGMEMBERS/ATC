@@ -48,7 +48,6 @@
 
         <multiplay>
             <chat_display>1</chat_display>
-            <callsign>ATC</callsign>
         </multiplay>
 
         <atc>
