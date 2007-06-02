@@ -101,7 +101,9 @@ update_systems = func {
     if(num < 0){num = 0;}
     ATC_num.setValue(num);
     setprop("instrumentation/radar/mp[" ~ counter ~ "]/callsign",getprop("/ai/models/multiplayer["~ counter ~"]/callsign"));
-    setprop("instrumentation/radar/mp[" ~ counter ~ "]/valid",getprop("/ai/models/multiplayer["~ counter ~"]/radar/in-range"));
+    if(getprop("/ai/models/multiplayer["~ counter ~"]/valid")){
+        setprop("instrumentation/radar/mp[" ~ counter ~ "]/valid",getprop("/ai/models/multiplayer["~ counter ~"]/radar/in-range"));
+        }else{setprop("instrumentation/radar/mp[" ~ counter ~ "]/valid",0);}
     setprop("instrumentation/radar/mp[" ~ counter ~ "]/x",getprop("/ai/models/multiplayer["~ counter ~"]/radar/x-shift"));
     setprop("instrumentation/radar/mp[" ~ counter ~ "]/y",getprop("/ai/models/multiplayer["~ counter ~"]/radar/y-shift"));
     counter +=1;
