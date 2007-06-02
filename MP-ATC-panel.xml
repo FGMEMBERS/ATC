@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<!--
+Multiplayer Air Traffic Control Panel.
+May 2007
+Syd Adams <sydadams@telus.net>
+-->
+
+<!DOCTYPE PropertyList SYSTEM "panel.dtd">
+
+<PropertyList>
+
+    <name>Panel Background</name>
+    <background>Aircraft/ATC/transparent-bg.rgb</background>
+    <w-base>1024</w-base>
+    <h-base>768</h-base>
+    <y-offset>0</y-offset>
+    <view-height>384</view-height>
+
+<instruments>
+
+    <instrument include="atc-instr.xml">
+        <name>ATC</name>
+        <x>512</x>
+        <y>192</y>
+        <w>1024</w>
+        <h>384</h>
+    </instrument>
+
+    <instrument include="radar-screen.xml">
+        <name>screen</name>
+        <x>510</x>
+        <y>225</y>
+        <w>300</w>
+        <h>300</h>
+    </instrument>
+
+    <instrument include="chat-screen.xml">
+        <name>chat_screen</name>
+        <x>845</x>
+        <y>162</y>
+        <w>330</w>
+        <h>184</h>
+    </instrument>
+
+</instruments>
+</PropertyList>
+

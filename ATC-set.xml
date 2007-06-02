@@ -1,0 +1,87 @@
+<PropertyList >
+
+    <sim>
+        <description>Air Traffic Control</description>
+        <author>Syd Adams</author>
+        <status>development</status>
+        <flight-model>null</flight-model>
+        <aero></aero>
+        <fuel-fraction>0</fuel-fraction>
+
+        <model>
+            <path>Aircraft/ATC/atc-tower.xml</path>
+        </model>
+        <startup>
+            <splash-texture></splash-texture>
+        </startup>
+        <panel>
+            <path>Aircraft/ATC/MP-ATC-panel.xml</path>
+            <visibility>true</visibility>
+        </panel>
+
+        <chase-distance-m>0</chase-distance-m>
+
+    <view n="100">
+        <name>ATC View</name>
+        <type>lookat</type>
+        <internal type="bool">false</internal>
+        <config>
+            <from-model type="bool">true</from-model>
+            <from-model-idx type="int">0</from-model-idx>
+            <ground-level-nearplane-m type="double">5.0f</ground-level-nearplane-m>
+            <default-field-of-view-deg type="double">55.0</default-field-of-view-deg>
+            <default-pitch-deg type="double">0</default-pitch-deg>
+            <default-heading-deg type="double">0</default-heading-deg>
+            <front-direction-deg type="double">0</front-direction-deg>
+            <target-lat-deg-path>/sim/atc/target-lat</target-lat-deg-path>
+            <target-lon-deg-path>/sim/atc/target-lon</target-lon-deg-path>
+            <target-alt-ft-path>/sim/atc/target-alt</target-alt-ft-path>
+        </config>
+    <dynamic>
+      <enabled type="bool" userarchive="y">false</enabled>
+    </dynamic>
+  </view>
+
+    <current-view>
+        <view-number>100</view-number>
+    </current-view>
+
+        <multiplay>
+            <chat_display>1</chat_display>
+            <callsign>ATC</callsign>
+        </multiplay>
+
+        <atc>
+            <target-id type="string">0</target-id>
+            <target-alt type="double">0</target-alt>
+            <target-number type="int">0</target-number>
+            <target-total type="int">0</target-total>
+            <target-range type="double">0</target-range>
+            <target-nm-norm type="double">0</target-nm-norm>
+        </atc>
+
+    </sim>
+
+    <instrumentation>
+        <wxradar>
+        <serviceable>true</serviceable>
+            <range type="int" archive="y">20</range>
+            <minimized type="bool" archive="y">false</minimized>
+            <switch archive="y">on</switch>
+            <mode archive="y">wx</mode>
+            <lightning type="bool" archive="y">true</lightning>
+            <display-mode archive="y">arc</display-mode>
+        </wxradar>
+    <radar>
+        <range type="int" archive="y">20</range>
+        <factor type="double">0</factor>
+    </radar>
+</instrumentation>
+
+    <nasal>
+        <ATC>
+            <file>Aircraft/ATC/atc.nas</file>
+        </ATC>
+    </nasal>
+
+</PropertyList>

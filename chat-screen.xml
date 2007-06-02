@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+    <name>Chat History</name>
+ <w-base>330</w-base>
+ <h-base>180</h-base>
+
+<!-- Layers -->
+
+<layers>
+    <layer>
+        <name>chat history</name>
+        <type>text</type>
+        <font>default</font>
+        <point-size>10</point-size>
+        <color>
+            <red>0.9</red>
+            <green>0.9</green>
+            <blue>0.9</blue>
+        </color>
+        <chunks>
+            <chunk>
+                <type>text-value</type>
+                <property>/sim/multiplay/chat_history</property>
+            </chunk>
+        </chunks>
+        <transformations>
+            <transformation>
+                <type>x-shift</type>
+                <offset>-160</offset>
+            </transformation>
+            <transformation>
+                <type>y-shift</type>
+                <offset>78</offset>
+            </transformation>
+        </transformations>
+    </layer>
+</layers>
+
+<actions>
+    <action>
+        <name>outline</name>
+        <x>-165</x>
+        <y>-90</y>
+        <w>330</w>
+        <h>180</h>
+        <binding>
+        </binding>
+    </action>
+
+</actions>
+
+</PropertyList>
