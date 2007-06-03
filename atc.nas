@@ -33,9 +33,6 @@ setlistener("/sim/signals/fdm-initialized", func {
     RADAR.getNode("factor").setDoubleValue((1/RADAR.getNode("range").getValue())*10);
     FDM_ON =1;
     settimer(update_systems, 1);
-    });
-
-setlistener("/sim/startup/xsize", func {
     gui.showDialog("ATCchat");
     gui.showDialog("ATC-log");
 });
