@@ -73,6 +73,17 @@
                 </colors>
             </style>
         </gui>
+
+        <help>
+            <title>ATC Operations</title>
+            <text>
+            To move tower to a new airport , use the menu "Tower Position"
+            To adjust view position ,modify /sim/tower properties in the property browser.
+            And last but not least , have fun...
+            </text>
+        </help>
+
+
     </sim>
 
     <instrumentation>
