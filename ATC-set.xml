@@ -59,6 +59,23 @@
             <target-nm-norm type="double">0</target-nm-norm>
         </atc>
 
+        <gui>
+            <current-style>1</current-style>
+            <style n="1">
+                <colors>
+                    <input-misc>
+                        <blue>0.8</blue>
+                        <green>0.8</green>
+                        <red>0.8</red>
+                    </input-misc>
+                    <input-legend>
+                        <blue>0.8</blue>
+                        <green>0.8</green>
+                        <red>0.8</red>
+                    </input-legend>
+                </colors>
+            </style>
+        </gui>
     </sim>
 
     <instrumentation>

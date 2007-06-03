@@ -35,14 +35,6 @@ Syd Adams <sydadams@telus.net>
         <h>300</h>
     </instrument>
 
-    <instrument include="chat-screen.xml">
-        <name>chat_screen</name>
-        <x>845</x>
-        <y>162</y>
-        <w>330</w>
-        <h>184</h>
-    </instrument>
-
 </instruments>
 </PropertyList>
 

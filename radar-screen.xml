@@ -41,7 +41,7 @@
         <name>AI-0</name>
         <type>text</type>
         <font>default</font>
-        <point-size>12</point-size>
+        <point-size>10</point-size>
         <color>
             <red>0.8</red>
             <green>0.8</green>
@@ -82,7 +82,7 @@
         <name>AI-1</name>
         <type>text</type>
         <font>default</font>
-        <point-size>12</point-size>
+        <point-size>10</point-size>
         <color>
             <red>0.8</red>
             <green>0.8</green>
@@ -122,7 +122,7 @@
         <name>AI-2</name>
         <type>text</type>
         <font>default</font>
-        <point-size>12</point-size>
+        <point-size>10</point-size>
         <color>
             <red>0.8</red>
             <green>0.8</green>
@@ -162,7 +162,7 @@
         <name>AI-3</name>
         <type>text</type>
         <font>default</font>
-        <point-size>12</point-size>
+        <point-size>10</point-size>
         <color>
             <red>0.8</red>
             <green>0.8</green>
@@ -202,7 +202,7 @@
         <name>AI-4</name>
         <type>text</type>
         <font>default</font>
-        <point-size>12</point-size>
+        <point-size>10</point-size>
         <color>
             <red>0.8</red>
             <green>0.8</green>
@@ -242,7 +242,7 @@
         <name>AI-5</name>
         <type>text</type>
         <font>default</font>
-        <point-size>12</point-size>
+        <point-size>10</point-size>
         <color>
             <red>0.8</red>
             <green>0.8</green>
@@ -281,7 +281,7 @@
         <name>MP-0</name>
         <type>text</type>
         <font>default</font>
-        <point-size>12</point-size>
+        <point-size>10</point-size>
         <color>
             <red>0.0</red>
             <green>0.6</green>
@@ -318,7 +318,7 @@
         <name>MP-1</name>
         <type>text</type>
         <font>default</font>
-        <point-size>12</point-size>
+        <point-size>10</point-size>
         <color>
             <red>0.0</red>
             <green>0.6</green>
@@ -355,7 +355,7 @@
         <name>MP-2</name>
         <type>text</type>
         <font>default</font>
-        <point-size>12</point-size>
+        <point-size>10</point-size>
         <color>
             <red>0.0</red>
             <green>0.6</green>
@@ -392,7 +392,7 @@
         <name>MP-3</name>
         <type>text</type>
         <font>default</font>
-        <point-size>12</point-size>
+        <point-size>10</point-size>
         <color>
             <red>0.0</red>
             <green>0.6</green>
@@ -429,7 +429,7 @@
         <name>MP-4</name>
         <type>text</type>
         <font>default</font>
-        <point-size>12</point-size>
+        <point-size>10</point-size>
         <color>
             <red>0.0</red>
             <green>0.6</green>
@@ -466,7 +466,7 @@
         <name>MP-5</name>
         <type>text</type>
         <font>default</font>
-        <point-size>12</point-size>
+        <point-size>10</point-size>
         <color>
             <red>0.0</red>
             <green>0.6</green>

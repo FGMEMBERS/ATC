@@ -26,7 +26,7 @@
         <name>Tower ID</name>
         <type>text</type>
         <font>default</font>
-        <point-size>18</point-size>
+        <point-size>16</point-size>
         <color>
             <red>0.0</red>
             <green>0.0</green>
@@ -45,7 +45,7 @@
             </transformation>
             <transformation>
                 <type>y-shift</type>
-                <offset>-150</offset>
+                <offset>-140</offset>
             </transformation>
         </transformations>
     </layer>
