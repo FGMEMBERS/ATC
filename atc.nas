@@ -32,10 +32,13 @@ setlistener("/sim/signals/fdm-initialized", func {
     ATC_target_hdg.setDoubleValue(0);
     RADAR.getNode("factor").setDoubleValue((1/RADAR.getNode("range").getValue())*10);
     FDM_ON =1;
-    gui.showDialog("ATCchat");
-    gui.showDialog("ATC-log");
     settimer(update_systems, 1);
     });
+
+setlistener("/sim/startup/xsize", func {
+    gui.showDialog("ATCchat");
+    gui.showDialog("ATC-log");
+});
 
 setlistener("/sim/current-view/view-number", func {
     if(FDM_ON !=0){
@@ -96,23 +99,23 @@ update_systems = func {
     if(FDM_ON != 0){
     #### RADAR BLIPS ####
     var mp_craft = props.globals.getNode("/ai/models").getChildren("multiplayer");
+    var num = ATC_num.getValue();
     var ttl = size(mp_craft);
     ATC_total.setIntValue(ttl);
-    var num =ATC_num.getValue();
-    if(num >= ttl)num = ttl-1;
-    if(num < 0){num = 0;}
+    if(num > ttl-1){num =0;}
+    if(num < 0){num =ttl-1;}
     ATC_num.setValue(num);
-    setprop("instrumentation/radar/mp[" ~ counter ~ "]/callsign",getprop("/ai/models/multiplayer["~ counter ~"]/callsign"));
-    if(getprop("/ai/models/multiplayer["~ counter ~"]/valid")){
-        setprop("instrumentation/radar/mp[" ~ counter ~ "]/valid",getprop("/ai/models/multiplayer["~ counter ~"]/radar/in-range"));
-        }else{setprop("instrumentation/radar/mp[" ~ counter ~ "]/valid",0);}
-    setprop("instrumentation/radar/mp[" ~ counter ~ "]/x",getprop("/ai/models/multiplayer["~ counter ~"]/radar/x-shift"));
-    setprop("instrumentation/radar/mp[" ~ counter ~ "]/y",getprop("/ai/models/multiplayer["~ counter ~"]/radar/y-shift"));
-    counter +=1;
-    if(counter >=ttl){counter = 0;}
     if(ttl > 0){
+        setprop("instrumentation/radar/mp[" ~ counter ~ "]/callsign",getprop("/ai/models/multiplayer["~ counter ~"]/callsign"));
+        if(getprop("/ai/models/multiplayer["~ counter ~"]/valid")){
+            setprop("instrumentation/radar/mp[" ~ counter ~ "]/valid",getprop("/ai/models/multiplayer["~ counter ~"]/radar/in-range"));
+            }else{setprop("instrumentation/radar/mp[" ~ counter ~ "]/valid",0);}
+        setprop("instrumentation/radar/mp[" ~ counter ~ "]/x",getprop("/ai/models/multiplayer["~ counter ~"]/radar/x-shift"));
+        setprop("instrumentation/radar/mp[" ~ counter ~ "]/y",getprop("/ai/models/multiplayer["~ counter ~"]/radar/y-shift"));
+        counter +=1;
+        if(counter >=ttl){counter = 0;}
         update_target(num);
-    }
+        }
     }
     settimer(update_systems, 0);
 }

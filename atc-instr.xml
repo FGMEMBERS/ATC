@@ -331,7 +331,7 @@
             <command>property-adjust</command>
             <property>/sim/atc/target-number</property>
             <step>-1</step>
-            <min>0</min>
+            <min>-1</min>
             <max>20</max>
             <wrap>1</wrap>
         </binding>
@@ -349,7 +349,7 @@
             <command>property-adjust</command>
             <property>/sim/atc/target-number</property>
             <step>1</step>
-            <min>0</min>
+            <min>-1</min>
             <max>20</max>
             <wrap>1</wrap>
         </binding>

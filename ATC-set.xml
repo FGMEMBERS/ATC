@@ -37,9 +37,6 @@
             <target-lon-deg-path>/sim/atc/target-lon</target-lon-deg-path>
             <target-alt-ft-path>/sim/atc/target-alt</target-alt-ft-path>
         </config>
-    <dynamic>
-      <enabled type="bool" userarchive="y">false</enabled>
-    </dynamic>
   </view>
 
     <current-view>
