@@ -1,4 +1,6 @@
 ####    Player Mode ATC ####
+var ATClog_dialog = gui.Dialog.new("/sim/gui/dialogs/ATC-log/dialog", "Aircraft/ATC/Dialogs/ATC-log.xml");
+var ATCchat_dialog = gui.Dialog.new("/sim/gui/dialogs/ATC-chat/dialog", "Aircraft/ATC/Dialogs/ATCchat.xml");
 Tower_lat = props.globals.getNode("/sim/tower/latitude-deg",1);
 Tower_lon = props.globals.getNode("/sim/tower/longitude-deg",1);
 Tower_alt = props.globals.getNode("/sim/tower/altitude-ft",1);
@@ -33,8 +35,8 @@ setlistener("/sim/signals/fdm-initialized", func {
     RADAR.getNode("factor").setDoubleValue((1/RADAR.getNode("range").getValue())*10);
     FDM_ON =1;
     settimer(update_systems, 1);
-    gui.showDialog("ATCchat");
-    gui.showDialog("ATC-log");
+    ATClog_dialog.open();
+    ATCchat_dialog.open();
 });
 
 setlistener("/sim/current-view/view-number", func {
