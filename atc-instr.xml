@@ -1,261 +1,297 @@
 <?xml version="1.0"?>
 
 <PropertyList>
-    <name>ATC</name>
- <w-base>1024</w-base>
- <h-base>384</h-base>
+        <name>ATC</name>
+        <w-base>1024</w-base>
+        <h-base>768</h-base>
 
-<!-- Layers -->
+        <!-- Layers -->
 
-<layers>
+        <layers>
 
- <layer>
-   <name>atc panel</name>
-   <texture>
-    <path>Aircraft/ATC/panel-bg.rgb</path>
-    <x1>0</x1>
-    <y1>0</y1>
-    <x2>1</x2>
-    <y2>0.748</y2>
-   </texture>
-   <w>1024</w>
-   <h>384</h>
-  </layer>
+                <layer>
+                        <name>atc panel</name>
+                        <texture>
+                                <path>Aircraft/ATC/panel-bg.rgb</path>
+                                <x1>0</x1>
+                                <y1>0</y1>
+                                <x2>1</x2>
+                                <y2>0.748</y2>
+                        </texture>
+                        <w>1024</w>
+                        <h>768</h>
+                </layer>
 
-    <layer>
-        <name>Tower ID</name>
-        <type>text</type>
-        <font>default</font>
-        <point-size>16</point-size>
-        <color>
-            <red>0.0</red>
-            <green>0.0</green>
-            <blue>0.0</blue>
-        </color>
-        <chunks>
-            <chunk>
-            <type>text-value</type>
-            <property>/sim/tower/airport-id</property>
-            </chunk>
-        </chunks>
-        <transformations>
-            <transformation>
-                <type>x-shift</type>
-                <offset>-50</offset>
-            </transformation>
-            <transformation>
-                <type>y-shift</type>
-                <offset>-140</offset>
-            </transformation>
-        </transformations>
-    </layer>
+                <layer>
+                        <name>Tower ID</name>
+                        <type>text</type>
+                        <font>default</font>
+                        <point-size>16</point-size>
+                        <color>
+                                <red>0.0</red>
+                                <green>0.0</green>
+                                <blue>0.0</blue>
+                        </color>
+                        <chunks>
+                                <chunk>
+                                        <type>text-value</type>
+                                        <property>/sim/tower/airport-id</property>
+                                </chunk>
+                        </chunks>
+                        <transformations>
+                                <transformation>
+                                        <type>x-shift</type>
+                                        <offset>-50</offset>
+                                </transformation>
+                                <transformation>
+                                        <type>y-shift</type>
+                                        <offset>-140</offset>
+                                </transformation>
+                        </transformations>
+                </layer>
 
 
-    <layer>
-        <name>MP number</name>
-        <type>text</type>
-        <font>default</font>
-        <point-size>15</point-size>
-        <color>
-            <red>0.8</red>
-            <green>0.8</green>
-            <blue>0.8</blue>
-        </color>
-        <chunks>
-            <chunk>
-            <type>number-value</type>
-            <property>/sim/atc/target-number</property>
-            <format>% 2.0f</format>
-            </chunk>
-        </chunks>
-        <transformations>
-            <transformation>
-                <type>x-shift</type>
-                <offset>-285</offset>
-            </transformation>
-            <transformation>
-                <type>y-shift</type>
-                <offset>147</offset>
-            </transformation>
-        </transformations>
-    </layer>
+                <layer>
+                        <name>MP number</name>
+                        <type>text</type>
+                        <condition>
+                            <greater-than>
+                                <property>/sim/atc/target-number</property>
+                                <value>-1</value>
+                            </greater-than>
+                        </condition>
+                        <font>default</font>
+                        <point-size>15</point-size>
+                        <color>
+                                <red>0.8</red>
+                                <green>0.8</green>
+                                <blue>0.8</blue>
+                        </color>
+                        <chunks>
+                                <chunk>
+                                        <type>number-value</type>
+                                        <property>/sim/atc/target-number</property>
+                                        <format>% 2.0f</format>
+                                </chunk>
+                        </chunks>
+                        <transformations>
+                                <transformation>
+                                        <type>x-shift</type>
+                                        <offset>-24</offset>
+                                </transformation>
+                                <transformation>
+                                        <type>y-shift</type>
+                                        <offset>-280</offset>
+                                </transformation>
+                        </transformations>
+                </layer>
 
-    <layer>
-        <name>MP callsign</name>
-        <type>text</type>
-        <font>default</font>
-        <point-size>14</point-size>
-        <color>
-            <red>0.8</red>
-            <green>0.8</green>
-            <blue>0.8</blue>
-        </color>
-        <chunks>
-            <chunk>
-            <type>text-value</type>
-            <property>/sim/atc/target-id</property>
-            </chunk>
-        </chunks>
-        <transformations>
-            <transformation>
-                <type>x-shift</type>
-                <offset>-280</offset>
-            </transformation>
-            <transformation>
-                <type>y-shift</type>
-                <offset>117</offset>
-            </transformation>
-        </transformations>
-    </layer>
+                <layer>
+                        <name>MP callsign</name>
+                        <type>text</type>
+                        <condition>
+                            <greater-than>
+                                <property>/sim/atc/target-number</property>
+                                <value>-1</value>
+                            </greater-than>
+                        </condition>
+                        <font>default</font>
+                        <point-size>14</point-size>
+                        <color>
+                                <red>0.8</red>
+                                <green>0.8</green>
+                                <blue>0.8</blue>
+                        </color>
+                        <chunks>
+                                <chunk>
+                                        <type>text-value</type>
+                                        <property>/sim/atc/target-id</property>
+                                </chunk>
+                        </chunks>
+                        <transformations>
+                                <transformation>
+                                        <type>x-shift</type>
+                                        <offset>-36</offset>
+                                </transformation>
+                                <transformation>
+                                        <type>y-shift</type>
+                                        <offset>-310</offset>
+                                </transformation>
+                        </transformations>
+                </layer>
 
-    <layer>
-        <name>MP altitude</name>
-        <type>text</type>
-        <font>default</font>
-        <point-size>14</point-size>
-        <color>
-            <red>0.8</red>
-            <green>0.8</green>
-            <blue>0.8</blue>
-        </color>
-        <chunks>
-            <chunk>
-                <type>number-value</type>
-                <property>/sim/atc/target-alt</property>
-                <format>%- 5.1f</format>
-            </chunk>
-        </chunks>
-        <transformations>
-            <transformation>
-                <type>x-shift</type>
-                <offset>-280</offset>
-            </transformation>
-            <transformation>
-                <type>y-shift</type>
-                <offset>88</offset>
-            </transformation>
-        </transformations>
-    </layer>
+                <layer>
+                        <name>MP altitude</name>
+                        <type>text</type>
+                        <condition>
+                            <greater-than>
+                                <property>/sim/atc/target-number</property>
+                                <value>-1</value>
+                            </greater-than>
+                        </condition>
+                        <font>default</font>
+                        <point-size>14</point-size>
+                        <color>
+                                <red>0.8</red>
+                                <green>0.8</green>
+                                <blue>0.8</blue>
+                        </color>
+                        <chunks>
+                                <chunk>
+                                        <type>number-value</type>
+                                        <property>/sim/atc/target-alt</property>
+                                        <format>%- 5.1f</format>
+                                </chunk>
+                        </chunks>
+                        <transformations>
+                                <transformation>
+                                        <type>x-shift</type>
+                                        <offset>160</offset>
+                                </transformation>
+                                <transformation>
+                                        <type>y-shift</type>
+                                        <offset>-250</offset>
+                                </transformation>
+                        </transformations>
+                </layer>
 
-    <layer>
-        <name>MP range</name>
-        <type>text</type>
-        <font>default</font>
-        <point-size>14</point-size>
-        <color>
-            <red>0.8</red>
-            <green>0.8</green>
-            <blue>0.8</blue>
-        </color>
-        <chunks>
-            <chunk>
-                <type>number-value</type>
-                <property>/sim/atc/target-range</property>
-                <format>%- 3.1f</format>
-            </chunk>
-        </chunks>
-        <transformations>
-            <transformation>
-                <type>x-shift</type>
-                <offset>-280</offset>
-            </transformation>
-            <transformation>
-                <type>y-shift</type>
-                <offset>58</offset>
-            </transformation>
-        </transformations>
-    </layer>
+                <layer>
+                        <name>MP range</name>
+                        <type>text</type>
+                        <condition>
+                            <greater-than>
+                                <property>/sim/atc/target-number</property>
+                                <value>-1</value>
+                            </greater-than>
+                        </condition>
+                        <font>default</font>
+                        <point-size>14</point-size>
+                        <color>
+                                <red>0.8</red>
+                                <green>0.8</green>
+                                <blue>0.8</blue>
+                        </color>
+                        <chunks>
+                                <chunk>
+                                        <type>number-value</type>
+                                        <property>/sim/atc/target-range</property>
+                                        <format>%- 3.1f</format>
+                                </chunk>
+                        </chunks>
+                        <transformations>
+                                <transformation>
+                                        <type>x-shift</type>
+                                        <offset>160</offset>
+                                </transformation>
+                                <transformation>
+                                        <type>y-shift</type>
+                                        <offset>-280</offset>
+                                </transformation>
+                        </transformations>
+                </layer>
 
-    <layer>
-        <name>MP airspeed</name>
-        <type>text</type>
-        <font>default</font>
-        <point-size>14</point-size>
-        <color>
-            <red>0.8</red>
-            <green>0.8</green>
-            <blue>0.8</blue>
-        </color>
-        <chunks>
-            <chunk>
-                <type>number-value</type>
-                <property>/sim/atc/target-kt</property>
-                <format>%- 3.1f</format>
-            </chunk>
-        </chunks>
-        <transformations>
-            <transformation>
-                <type>x-shift</type>
-                <offset>-280</offset>
-            </transformation>
-            <transformation>
-                <type>y-shift</type>
-                <offset>28</offset>
-            </transformation>
-        </transformations>
-    </layer>
+                <layer>
+                        <name>MP airspeed</name>
+                        <type>text</type>
+                        <condition>
+                            <greater-than>
+                                <property>/sim/atc/target-number</property>
+                                <value>-1</value>
+                            </greater-than>
+                        </condition>
+                        <font>default</font>
+                        <point-size>14</point-size>
+                        <color>
+                                <red>0.8</red>
+                                <green>0.8</green>
+                                <blue>0.8</blue>
+                        </color>
+                        <chunks>
+                                <chunk>
+                                        <type>number-value</type>
+                                        <property>/sim/atc/target-kt</property>
+                                        <format>%- 3.1f</format>
+                                </chunk>
+                        </chunks>
+                        <transformations>
+                                <transformation>
+                                        <type>x-shift</type>
+                                        <offset>160</offset>
+                                </transformation>
+                                <transformation>
+                                        <type>y-shift</type>
+                                        <offset>-310</offset>
+                                </transformation>
+                        </transformations>
+                </layer>
 
-    <layer>
-        <name>MP heading</name>
-        <type>text</type>
-        <font>default</font>
-        <point-size>14</point-size>
-        <color>
-            <red>0.8</red>
-            <green>0.8</green>
-            <blue>0.8</blue>
-        </color>
-        <chunks>
-            <chunk>
-                <type>number-value</type>
-                <property>/sim/atc/target-hdg</property>
-                <format>%- 3.1f</format>
-            </chunk>
-        </chunks>
-        <transformations>
-            <transformation>
-                <type>x-shift</type>
-                <offset>-280</offset>
-            </transformation>
-            <transformation>
-                <type>y-shift</type>
-                <offset>-2</offset>
-            </transformation>
-        </transformations>
-    </layer>
+                <layer>
+                        <name>MP heading</name>
+                        <type>text</type>
+                        <condition>
+                            <greater-than>
+                                <property>/sim/atc/target-number</property>
+                                <value>-1</value>
+                            </greater-than>
+                        </condition>
+                        <font>default</font>
+                        <point-size>14</point-size>
+                        <color>
+                                <red>0.8</red>
+                                <green>0.8</green>
+                                <blue>0.8</blue>
+                        </color>
+                        <chunks>
+                                <chunk>
+                                        <type>number-value</type>
+                                        <property>/sim/atc/target-hdg</property>
+                                        <format>%- 3.1f</format>
+                                </chunk>
+                        </chunks>
+                        <transformations>
+                                <transformation>
+                                        <type>x-shift</type>
+                                        <offset>160</offset>
+                                </transformation>
+                                <transformation>
+                                        <type>y-shift</type>
+                                        <offset>-340</offset>
+                                </transformation>
+                        </transformations>
+                </layer>
 
-<!--    RADAR    -->
+                <!--    RADAR    -->
 
-    <layer>
-        <name>radar range</name>
-        <type>text</type>
-        <font>default</font>
-        <point-size>14</point-size>
-        <color>
-            <red>0.8</red>
-            <green>0.8</green>
-            <blue>0.8</blue>
-        </color>
-        <chunks>
-            <chunk>
-                <type>number-value</type>
-                <property>/instrumentation/radar/range</property>
-                <format>%- 3.0f</format>
-            </chunk>
-        </chunks>
-        <transformations>
-            <transformation>
-                <type>x-shift</type>
-                <offset>200</offset>
-            </transformation>
-            <transformation>
-                <type>y-shift</type>
-                <offset>147</offset>
-            </transformation>
-        </transformations>
-    </layer>
+                <layer>
+                        <name>radar range</name>
+                        <type>text</type>
+                        <font>default</font>
+                        <point-size>14</point-size>
+                        <color>
+                                <red>0.8</red>
+                                <green>0.8</green>
+                                <blue>0.8</blue>
+                        </color>
+                        <chunks>
+                                <chunk>
+                                        <type>number-value</type>
+                                        <property>/instrumentation/radar/range</property>
+                                        <format>%- 3.0f</format>
+                                </chunk>
+                        </chunks>
+                        <transformations>
+                                <transformation>
+                                        <type>x-shift</type>
+                                        <offset>365</offset>
+                                </transformation>
+                                <transformation>
+                                        <type>y-shift</type>
+                                        <offset>-280</offset>
+                                </transformation>
+                        </transformations>
+                </layer>
 
-    <layer>
+                <!-- layer>
         <name>radar l-half</name>
         <type>text</type>
         <font>default</font>
@@ -306,130 +342,77 @@
         <transformations>
             <transformation>
                 <type>x-shift</type>
-                <offset>40</offset>
+                <offset>365</offset>
             </transformation>
             <transformation>
                 <type>y-shift</type>
-                <offset>28</offset>
+                <offset>-280</offset>
             </transformation>
         </transformations>
-    </layer>
+    </layer-->
 
-</layers>
+        </layers>
 
-<actions>
+        <actions>
 
-    <action>
-        <name>previous mp</name>
-        <type>adjust</type>
-        <button>0</button>
-        <x>-352</x>
-        <y>140</y>
-        <w>24</w>
-        <h>24</h>
-        <binding>
-            <command>property-adjust</command>
-            <property>/sim/atc/target-number</property>
-            <step>-1</step>
-            <min>-1</min>
-            <max>20</max>
-            <wrap>1</wrap>
-        </binding>
-    </action>
+                <action>
+                        <name>previous mp</name>
+                        <type>adjust</type>
+                        <button>0</button>
+                        <x>-98</x>
+                        <y>-282</y>
+                        <w>24</w>
+                        <h>24</h>
+                        <binding>
+                                <command>nasal</command>
+                                <script>globals.ATC.step_target(-1);</script>
+                        </binding>
+                </action>
 
-    <action>
-        <name>next mp</name>
-        <type>adjust</type>
-        <button>0</button>
-        <x>-235</x>
-        <y>140</y>
-        <w>24</w>
-        <h>24</h>
-        <binding>
-            <command>property-adjust</command>
-            <property>/sim/atc/target-number</property>
-            <step>1</step>
-            <min>-1</min>
-            <max>20</max>
-            <wrap>1</wrap>
-        </binding>
-    </action>
+                <action>
+                        <name>next mp</name>
+                        <type>adjust</type>
+                        <button>0</button>
+                        <x>22</x>
+                        <y>-282</y>
+                        <w>24</w>
+                        <h>24</h>
+                        <binding>
+                                <command>nasal</command>
+                                <script>globals.ATC.step_target(1);</script>
+                        </binding>
+                </action>
 
-<!--    radar     -->
+                <!--    radar     -->
 
-    <action>
-        <name>radar down</name>
-        <type>adjust</type>
-        <button>0</button>
-        <x>176</x>
-        <y>140</y>
-        <w>24</w>
-        <h>24</h>
-        <binding>
-            <command>property-adjust</command>
-            <property>/instrumentation/radar/range</property>
-            <step>-1</step>
-            <min>1</min>
-            <max>200</max>
-            <wrap>0</wrap>
-        </binding>
-    </action>
+                <action>
+                        <name>radar down</name>
+                        <type>adjust</type>
+                        <button>0</button>
+                        <x>336</x>
+                        <y>-282</y>
+                        <w>24</w>
+                        <h>24</h>
+                        <binding>
+                                <command>nasal</command>
+                                <script>globals.ATC.step_radar_range(-1);</script>
+                        </binding>
+                </action>
 
-    <action>
-        <name>radar up</name>
-        <type>adjust</type>
-        <button>0</button>
-        <x>260</x>
-        <y>140</y>
-        <w>24</w>
-        <h>24</h>
-        <binding>
-            <command>property-adjust</command>
-            <property>/instrumentation/radar/range</property>
-            <step>1</step>
-            <min>1</min>
-            <max>200</max>
-            <wrap>0</wrap>
-        </binding>
-    </action>
+                <action>
+                        <name>radar up</name>
+                        <type>adjust</type>
+                        <button>0</button>
+                        <x>420</x>
+                        <y>-282</y>
+                        <w>24</w>
+                        <h>24</h>
+                        <binding>
+                                <command>nasal</command>
+                                <script>globals.ATC.step_radar_range(1);</script>
+                        </binding>
+                </action>
 
-
-    <action>
-        <name>radar minus</name>
-        <type>adjust</type>
-        <button>1</button>
-        <x>176</x>
-        <y>140</y>
-        <w>24</w>
-        <h>24</h>
-        <binding>
-            <command>property-adjust</command>
-            <property>/instrumentation/radar/range</property>
-            <step>-10</step>
-            <min>1</min>
-            <max>200</max>
-            <wrap>0</wrap>
-        </binding>
-    </action>
-
-    <action>
-        <name>radar plus</name>
-        <type>adjust</type>
-        <button>1</button>
-        <x>260</x>
-        <y>140</y>
-        <w>24</w>
-        <h>24</h>
-        <binding>
-            <command>property-adjust</command>
-            <property>/instrumentation/radar/range</property>
-            <step>10</step>
-            <min>1</min>
-            <max>200</max>
-            <wrap>0</wrap>
-        </binding>
-    </action>
-
-</actions>
+        </actions>
 
 </PropertyList>

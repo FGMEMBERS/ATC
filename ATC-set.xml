@@ -1,111 +1,158 @@
 <PropertyList >
 
-    <sim>
-        <description>Air Traffic Control</description>
-        <author>Syd Adams</author>
-        <status>development</status>
-        <flight-model>null</flight-model>
-        <aero></aero>
-        <fuel-fraction>0</fuel-fraction>
+        <sim>
+                <description>Air Traffic Control</description>
+                <author>Syd Adams</author>
+                <status>development</status>
+                <flight-model>null</flight-model>
+                <aero></aero>
+                <fuel-fraction>0</fuel-fraction>
 
-        <model>
-            <path>Aircraft/ATC/atc-tower.xml</path>
-        </model>
-        <startup>
-            <splash-texture></splash-texture>
-        </startup>
-        <panel>
-            <path>Aircraft/ATC/MP-ATC-panel.xml</path>
-            <visibility>true</visibility>
-        </panel>
+                <model>
+                        <path>Aircraft/ATC/atc-tower.xml</path>
+                </model>
+                <startup>
+                        <splash-texture></splash-texture>
+                </startup>
+                <panel>
+                        <path>Aircraft/ATC/MP-ATC-panel.xml</path>
+                        <visibility>true</visibility>
+                </panel>
+                <instrumentation>
+                        <path>Aircraft/ATC/instrumentation.xml</path>
+                </instrumentation>
 
-        <chase-distance-m>0</chase-distance-m>
+                <chase-distance-m>0</chase-distance-m>
 
-    <view n="100">
-        <name>ATC View</name>
-        <type>lookat</type>
-        <internal type="bool">false</internal>
-        <config>
-            <from-model type="bool">true</from-model>
-            <from-model-idx type="int">0</from-model-idx>
-            <ground-level-nearplane-m type="double">5.0f</ground-level-nearplane-m>
-            <default-field-of-view-deg type="double">55.0</default-field-of-view-deg>
-            <default-pitch-deg type="double">0</default-pitch-deg>
-            <default-heading-deg type="double">0</default-heading-deg>
-            <front-direction-deg type="double">0</front-direction-deg>
-            <target-lat-deg-path>/sim/atc/target-lat</target-lat-deg-path>
-            <target-lon-deg-path>/sim/atc/target-lon</target-lon-deg-path>
-            <target-alt-ft-path>/sim/atc/target-alt</target-alt-ft-path>
-        </config>
-  </view>
+                <view n="100">
+                        <name>ATC View</name>
+                        <type>lookat</type>
+                        <internal type="bool">false</internal>
+                        <config>
+                                <from-model type="bool">true</from-model>
+                                <from-model-idx type="int">0</from-model-idx>
+                                <ground-level-nearplane-m type="double">5.0f</ground-level-nearplane-m>
+                                <default-field-of-view-deg type="double">55.0</default-field-of-view-deg>
+                                <default-pitch-deg type="double">0</default-pitch-deg>
+                                <default-heading-deg type="double">0</default-heading-deg>
+                                <front-direction-deg type="double">0</front-direction-deg>
+                                <target-lat-deg-path>/sim/atc/target-lat</target-lat-deg-path>
+                                <target-lon-deg-path>/sim/atc/target-lon</target-lon-deg-path>
+                                <target-alt-ft-path>/sim/atc/target-alt</target-alt-ft-path>
+                        </config>
+                </view>
 
-    <current-view>
-        <view-number>100</view-number>
-    </current-view>
+                <current-view>
+                        <view-number>100</view-number>
+                </current-view>
 
-        <multiplay>
-            <chat_display>1</chat_display>
-        </multiplay>
+                <multiplay>
+                        <chat_display>1</chat_display>
+                </multiplay>
 
-        <atc>
-            <target-id type="string">0</target-id>
-            <target-alt type="double">0</target-alt>
-            <target-number type="int">0</target-number>
-            <target-total type="int">0</target-total>
-            <target-range type="double">0</target-range>
-            <target-nm-norm type="double">0</target-nm-norm>
-        </atc>
+                <atc>
+                        <target-id type="string"></target-id>
+                        <target-alt type="double">0</target-alt>
+                        <target-number type="int">-1</target-number>
+                        <target-range type="double">0</target-range>
+                </atc>
 
-        <gui>
-            <current-style>1</current-style>
-            <style n="1">
-                <colors>
-                    <input-misc>
-                        <blue>0.8</blue>
-                        <green>0.8</green>
-                        <red>0.8</red>
-                    </input-misc>
-                    <input-legend>
-                        <blue>0.8</blue>
-                        <green>0.8</green>
-                        <red>0.8</red>
-                    </input-legend>
-                </colors>
-            </style>
-        </gui>
+                <gui>
+                        <current-style>1</current-style>
+                        <style n="1">
+                                <colors>
+                                        <input-misc>
+                                                <blue>0.8</blue>
+                                                <green>0.8</green>
+                                                <red>0.8</red>
+                                        </input-misc>
+                                        <input-legend>
+                                                <blue>0.8</blue>
+                                                <green>0.8</green>
+                                                <red>0.8</red>
+                                        </input-legend>
+                                </colors>
+                        </style>
+                </gui>
 
-        <help>
-            <title>ATC Operations</title>
-            <text>
-            To move tower to a new airport , use the menu "Tower Position"
-            To adjust view position ,modify /sim/tower properties in the property browser.
-            And last but not least , have fun...
-            </text>
-        </help>
+                <help>
+                        <title>ATC Operations</title>
+                        <key>
+                                <name>Ctrl-F</name>
+                                <desc>Font selector</desc>
+                        </key>
+                        <key>
+                                <name>Shift-P</name>
+                                <desc>Toggle radar screen</desc>
+                        </key>
+                        <key>
+                                <name>Ctrl-T</name>
+                                <desc>Toggle visual target tracking</desc>
+                        </key>
+                        <line>To move tower to a new airport, use the menu "Tower Position".</line>
+                        <line>To adjust view position, modify /sim/tower properties in the property browser.</line>
+                        <line>And last but not least, have fun...</line>
+                </help>
 
 
-    </sim>
+        </sim>
 
-    <instrumentation>
-        <wxradar>
-        <serviceable>true</serviceable>
-            <range type="int" archive="y">20</range>
-            <minimized type="bool" archive="y">false</minimized>
-            <switch archive="y">on</switch>
-            <mode archive="y">wx</mode>
-            <lightning type="bool" archive="y">true</lightning>
-            <display-mode archive="y">arc</display-mode>
-        </wxradar>
-    <radar>
-        <range type="int" archive="y">20</range>
-        <factor type="double">0</factor>
-    </radar>
-</instrumentation>
+        <instrumentation>
+                <radar>
+                        <switch type="string"
+                                                        archive="y">ON</switch>
+                        <mode-control type="int"
+                                                                                archive="y">1</mode-control>
+                        <display-controls>
+                                <WX type="bool"
+                                                archive="y">false</WX>
+                                <pos type="bool"
+                                                 archive="y">true</pos>
+                                <data type="bool"
+                                                        archive="y">true</data>
+                                <symbol type="bool"
+                                                                archive="y">true</symbol>
+                        </display-controls>
+                        <serviceable type="bool">true</serviceable>
+                        <range type="int"
+                                                 archive="y">2</range>
+                        <mode type="string"
+                                                archive="y">WX</mode>
+                        <lightning type="bool"
+                                                                 archive="y">true</lightning>
+                        <display-mode type="string"
+                                                                                archive="y">plan</display-mode>
+                        <minimized type="bool"
+                                                                 archive="y">false</minimized>
+                        <heading-marker type="bool"
+                                                                                        archive="y">false</heading-marker>
+                        <limit-deg type="int">180</limit-deg>
+                </radar>
+        </instrumentation>
 
-    <nasal>
-        <ATC>
-            <file>Aircraft/ATC/atc.nas</file>
-        </ATC>
-    </nasal>
-
+        <nasal>
+                <ATC>
+                        <file>Aircraft/ATC/atc.nas</file>
+                </ATC>
+        </nasal>
+        <input>
+                <keyboard>
+                        <key n="6">
+                                <name>Ctrl-F</name>
+                                <desc>Font selector</desc>
+                                <binding>
+                                        <command>nasal</command>
+                                        <script>globals.ATC.select_atc_font();</script>
+                                </binding>
+                        </key>
+                        <key n="20">
+                                <name>Ctrl-T</name>
+                                <desc>Toggle visual target tracking</desc>
+                                <binding>
+                                        <command>nasal</command>
+                                        <script>globals.ATC.toggle_tracking();</script>
+                                </binding>
+                        </key>
+                </keyboard>
+        </input>
 </PropertyList>
