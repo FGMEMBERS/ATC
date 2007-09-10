@@ -38,8 +38,8 @@ var do_init = func {
     aircraft.data.add("/instrumentation/radar/font");
     FDM_ON =1;
     settimer(update_systems, 1);
-    setprop("/sim/gui/dialogs/ATC-log/dialog/width", 400 * (getprop("/sim/startup/xsize") - 10) / 1014);
-    setprop("/sim/gui/dialogs/ATC-log/dialog/height", 344 * (getprop("/sim/startup/ysize") - 40) / 728);
+#    setprop("/sim/gui/dialogs/ATC-log/dialog/width", 400 * (getprop("/sim/startup/xsize") - 10) / 1014);
+#    setprop("/sim/gui/dialogs/ATC-log/dialog/height", 344 * (getprop("/sim/startup/ysize") - 40) / 728);
     ATClog_dialog.open();
     ATCchat_dialog.open();
 }
