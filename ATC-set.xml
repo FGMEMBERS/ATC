@@ -2,7 +2,7 @@
 
         <sim>
                 <description>Air Traffic Control</description>
-                <author>Syd Adams</author>
+                <author>Syd Adams,Csaba Halász</author>
                 <status>development</status>
                 <flight-model>null</flight-model>
                 <aero></aero>
