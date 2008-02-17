@@ -44,7 +44,7 @@
             <stretch>true</stretch>
             <halign>fill</halign>
             <length>880</length>
-            <property>/sim/multiplay/chat_compose</property>
+            <property>/sim/multiplay/chat-compose</property>
         </input>
 
         <button>
@@ -57,11 +57,11 @@
             <binding>
                 <command>nasal</command>
                 <script>
-                    var lchat = getprop("/sim/multiplay/chat_compose");
+                    var lchat = getprop("/sim/multiplay/chat-compose");
                     if (lchat != "")
                     {
                     setprop("/sim/multiplay/chat", lchat);
-                    setprop("/sim/multiplay/chat_compose", "");
+                    setprop("/sim/multiplay/chat-compose", "");
                     fgcommand("dialog-update", props.Node.new({"object-name": "compose",
                     "dialog-name": "ATCchat"}));
                     }

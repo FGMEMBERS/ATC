@@ -36,7 +36,7 @@
     <live>true</live>
     <wrap>false</wrap>
     <editable>false</editable>
-    <property>/sim/multiplay/chat_history</property>
+    <property>/sim/multiplay/chat-history</property>
   </textbox>
     </group>
 </PropertyList>
