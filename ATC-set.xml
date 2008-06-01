@@ -2,7 +2,7 @@
 
         <sim>
                 <description>Air Traffic Control</description>
-                <author>Syd Adams,Csaba Halász</author>
+                <author>Syd Adams, Csaba Halasz</author>
                 <status>development</status>
                 <flight-model>null</flight-model>
                 <aero></aero>
@@ -127,6 +127,18 @@
                         <heading-marker type="bool"
                                                                                         archive="y">false</heading-marker>
                         <limit-deg type="int">180</limit-deg>
+
+                        <font>
+                                <name type="string">typewriter.txf</name>
+                                <size type="float">8</size>
+                                <line-spacing type="float">1.5</line-spacing>
+                                <color>
+                                        <red type="float">0</red>
+                                        <green type="float">0.8</green>
+                                        <blue type="float">0</blue>
+                                        <alpha type="float">1</alpha>
+                                </color>
+                        </font>
                 </radar>
         </instrumentation>
 
