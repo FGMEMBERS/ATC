@@ -131,7 +131,7 @@
                         <font>
                                 <name type="string">typewriter.txf</name>
                                 <size type="float">8</size>
-                                <line-spacing type="float">1.5</line-spacing>
+                                <line-spacing type="float">0.25</line-spacing>
                                 <color>
                                         <red type="float">0</red>
                                         <green type="float">0.8</green>
