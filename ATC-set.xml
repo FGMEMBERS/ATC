@@ -24,6 +24,14 @@
 
                 <chase-distance-m>0</chase-distance-m>
 
+                <view n="0">
+                        <config>
+                                <limits>
+                                        <enabled type="bool">false</enabled>
+                                </limits>
+                        </config>
+                </view>
+
                 <view n="100">
                         <name>ATC View</name>
                         <type>lookat</type>
