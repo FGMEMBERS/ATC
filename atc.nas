@@ -50,8 +50,8 @@ var do_init = func {
 }
 
 setlistener("/sim/signals/fdm-initialized", do_init);
-setlistener("/sim/signals/reinit", func {
-    cmdarg().getBoolValue() and return;
+setlistener("/sim/signals/reinit", func(n) {
+    n.getBoolValue() and return;
     # HACK: something overwrites view & position if we call do_init from here
     settimer(do_init, 1);
 });
@@ -230,8 +230,8 @@ var update_systems = func {
     }
 }
 
-var select_font_callback = func { 
-    var font = cmdarg().getValue();
+var select_font_callback = func(n) { 
+    var font = n.getValue();
     setprop("/instrumentation/radar/font", font);
 }
 
