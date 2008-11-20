@@ -134,7 +134,7 @@ var tan = func(x) {
 # adjust view so that it is centered at the given position 
 # position 0 is center, position 1 is edge
 var adjust_view = func(fov, position) {
-    return ATC_panel_visibility.getValue() ? math.atan2(tan(fov * 0.00872665) * position, 1) * geo.R2D : 0;
+    return ATC_panel_visibility.getValue() ? math.atan2(tan(fov * 0.00872665) * position, 1) * R2D : 0;
 }
 
 var update_target = func(MP) {
@@ -148,8 +148,8 @@ var update_target = func(MP) {
         #   y up +
         #   z back +
 
-        eye_coords.set_latlon(ATC_lat.getValue(), ATC_lon.getValue(), ATC_alt.getValue() * geo.FT2M);
-        var matrix = get_rotation_matrix(ATC_roll.getValue() * geo.D2R, ATC_pitch.getValue() * geo.D2R, ATC_heading.getValue() * geo.D2R);
+        eye_coords.set_latlon(ATC_lat.getValue(), ATC_lon.getValue(), ATC_alt.getValue() * FT2M);
+        var matrix = get_rotation_matrix(ATC_roll.getValue() * D2R, ATC_pitch.getValue() * D2R, ATC_heading.getValue() * D2R);
         var offset = tmul33(matrix, [ ATC_offset_x.getValue(), -ATC_offset_z.getValue(), ATC_offset_y.getValue() ] );
 
         eye_coords.apply_course_distance(offset[1] < 0 ? 180 :  0, math.abs(offset[1]));
@@ -160,12 +160,12 @@ var update_target = func(MP) {
         target_coords.set_latlon(
             MP.getNode("position/latitude-deg").getValue(),
             MP.getNode("position/longitude-deg").getValue(),
-            alt * geo.FT2M);
+            alt * FT2M);
 
         var brg = -eye_coords.course_to(target_coords) + ATC_heading.getValue() - adjust_view(ATC_fov.getValue(), 0.586);
-        var elevation = math.atan2(target_coords.alt() - eye_coords.alt(), eye_coords.distance_to(target_coords)) * geo.R2D;
+        var elevation = math.atan2(target_coords.alt() - eye_coords.alt(), eye_coords.distance_to(target_coords)) * R2D;
         # FIXME: assumes 4:3 aspect
-        var pitch = elevation - ATC_pitch.getValue() * math.cos(brg * geo.D2R) - ATC_roll.getValue() * math.sin(brg * geo.D2R) 
+        var pitch = elevation - ATC_pitch.getValue() * math.cos(brg * D2R) - ATC_roll.getValue() * math.sin(brg * D2R)
             - adjust_view(ATC_fov.getValue() * 0.75, 0.5);
         ATC_target_brg.setValue(brg);
         ATC_target_pitch.setValue(pitch);
