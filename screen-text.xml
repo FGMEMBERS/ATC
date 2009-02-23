@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+    <name>ATC2</name>
+    <w-base>1024</w-base>
+    <h-base>1024</h-base>
+
+    <layers>
+
+        <layer>
+            <condition>
+                <property>sim/atc/mag-compass</property>
+            </condition>
+            <name>Mag</name>
+            <type>text</type>
+            <font>helvetica_bold</font>
+            <point-size>14</point-size>
+            <color>
+                <red>0.2</red>
+                <green>1</green>
+                <blue>0.2</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>literal</type>
+                    <text>MAG</text>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>20</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>335</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <condition>
+                <not>
+                    <property>sim/atc/mag-compass</property>
+                </not>
+            </condition>
+            <name>tru</name>
+            <type>text</type>
+            <font>helvetica_bold</font>
+            <point-size>14</point-size>
+            <color>
+                <red>0.2</red>
+                <green>1</green>
+                <blue>0.2</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>literal</type>
+                    <text>TRUE</text>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>20</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>335</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <name>radar range</name>
+            <type>text</type>
+            <font>helvetica_bold</font>
+            <point-size>14</point-size>
+            <color>
+                <red>6</red>
+                <green>0.4</green>
+                <blue>0.2</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>number-value</type>
+                    <property>instrumentation/radar/range</property>
+                    <format>RNG:%3.0f NM</format>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>360</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>-4</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <name>MP num</name>
+            <type>text</type>
+            <font>helvetica_bold</font>
+            <point-size>14</point-size>
+            <color>
+                <red>6</red>
+                <green>0.4</green>
+                <blue>0.2</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>number-value</type>
+                    <property>sim/atc/target-number</property>
+                    <format>Num:%3.0f</format>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>-500</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>0</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <name>MP id</name>
+            <type>text</type>
+            <font>helvetica_bold</font>
+            <point-size>14</point-size>
+            <color>
+                <red>6</red>
+                <green>0.4</green>
+                <blue>0.2</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>text-value</type>
+                    <property>sim/atc/target-id</property>
+                    <format>Name :%s</format>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>-500</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>-20</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <name>MP alt</name>
+            <type>text</type>
+            <font>helvetica_bold</font>
+            <point-size>14</point-size>
+            <color>
+                <red>6</red>
+                <green>0.4</green>
+                <blue>0.2</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>number-value</type>
+                    <property>sim/atc/target-alt</property>
+                    <format>Alt :%5.0f</format>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>-500</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>-40</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <name>MP hdg</name>
+            <type>text</type>
+            <font>helvetica_bold</font>
+            <point-size>14</point-size>
+            <color>
+                <red>6</red>
+                <green>0.4</green>
+                <blue>0.2</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>number-value</type>
+                    <property>sim/atc/target-hdg</property>
+                    <format>Mag-hdg:%3.0f</format>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>-500</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>-60</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <name>MP spd</name>
+            <type>text</type>
+            <font>helvetica_bold</font>
+            <point-size>14</point-size>
+            <color>
+                <red>6</red>
+                <green>0.4</green>
+                <blue>0.2</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>number-value</type>
+                    <property>sim/atc/target-kt</property>
+                    <format>Spd:%3.0f Kt</format>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>-500</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>-80</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <name>MP distance</name>
+            <type>text</type>
+            <font>helvetica_bold</font>
+            <point-size>14</point-size>
+            <color>
+                <red>6</red>
+                <green>0.4</green>
+                <blue>0.2</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>number-value</type>
+                    <property>sim/atc/target-range</property>
+                    <format>Dist:%3.1f Nm</format>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>-500</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>-100</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+    </layers>
+
+</PropertyList>

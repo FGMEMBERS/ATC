@@ -232,7 +232,7 @@ var update_systems = func {
 
 var select_font_callback = func(n) { 
     var font = n.getValue();
-    setprop("/instrumentation/radar/font", font);
+    setprop("/instrumentation/radar/font/name", font);
 }
 
 var select_atc_font = func {

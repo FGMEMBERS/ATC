@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<!--
+Multiplayer Air Traffic Control Panel.
+May 2007
+Syd Adams 
+-->
+
+<!DOCTYPE PropertyList SYSTEM "panel.dtd">
+
+<PropertyList>
+
+    <name>Panel Background</name>
+    <background>Aircraft/ATC/transparent-bg.rgb</background>
+    <w-base>1024</w-base>
+    <h-base>768</h-base>
+    <y-offset>0</y-offset>
+    <view-width>1024</view-width>
+    <view-height>768</view-height>
+    <autohide>0</autohide>
+
+    <instruments>
+
+        <instrument include="radar-screen2.xml">
+            <name>screen</name>
+            <x>512</x>
+            <y>384</y>
+            <w>1024</w>
+            <h>1024</h>
+        </instrument>
+
+        <instrument include="screen-text.xml">
+            <condition>
+                <property>sim/atc/screen-text</property>
+            </condition>
+            <name>text</name>
+            <x>512</x>
+            <y>384</y>
+            <w>1024</w>
+            <h>1024</h>
+        </instrument>
+
+    </instruments>
+</PropertyList>
+
