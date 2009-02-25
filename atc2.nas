@@ -4,10 +4,11 @@
 ATC = {
     new : func(){
         m = { parents : [ATC] };
-        m.Tower_lat = props.globals.initNode("sim/tower/latitude-deg");
-        m.Tower_lon = props.globals.initNode("sim/tower/longitude-deg");
-        m.Tower_alt = props.globals.initNode("sim/tower/altitude-ft");
-        m.Tower_id = props.globals.initNode("sim/tower/airport-id");
+        m.AP=nil;
+        m.Tower_lat = props.globals.initNode("/sim/tower/latitude-deg");
+        m.Tower_lon = props.globals.initNode("/sim/tower/longitude-deg");
+        m.Tower_alt = props.globals.initNode("/sim/tower/altitude-ft");
+        m.Tower_id = props.globals.initNode("/sim/tower/airport-id");
         m.ATC_lat = props.globals.initNode("position/latitude-deg");
         m.ATC_lon = props.globals.initNode("position/longitude-deg");
         m.ATC_alt = props.globals.initNode("position/altitude-ft");
@@ -20,6 +21,8 @@ ATC = {
         m.ATC_offset_z = props.globals.initNode("sim/current-view/z-offset-m");
         m.ATC_target_brg = props.globals.initNode("sim/current-view/goal-heading-offset-deg");
         m.ATC_target_pitch = props.globals.initNode("sim/current-view/goal-pitch-offset-deg");
+        m.ATC_wind = props.globals.initNode("sim/atc/wind-from",0,"DOUBLE");
+        m.ATC_target_tracking = props.globals.initNode("sim/atc/tracking",1,"BOOL");
         m.ATC_target_id = props.globals.initNode("sim/atc/target-id"," ","STRING");
         m.ATC_target_alt = props.globals.initNode("sim/atc/target-alt",0.0,"DOUBLE");
         m.ATC_target_range = props.globals.initNode("sim/atc/target-range",0.0,"DOUBLE");
@@ -36,9 +39,24 @@ ATC = {
         m.RADAR_rotate =props.globals.initNode("instrumentation/radar/display-controls/rotate",1,"BOOL");
         m.FDM_ON = 0;
         m.mag_offset = 0;
-        m.follow = 1;
+        m.follow = m.ATC_target_tracking.getValue();
+
+        m.towerL=setlistener("/sim/tower", func m.do_init(),0,2);
+        m.magL=setlistener(m.ATC_mag_display,func m.magswap(),1);
         return m;
     },
+
+#### wind ###########
+
+    wind_check:func {
+        wind =getprop("environment/wind-from-heading-deg");
+        if(me.ATC_mag_display.getValue()){
+        wind=wind-me.mag_offset;
+        if(wind <0)wind=wind+360;
+        }
+        me.ATC_wind.setValue(wind);
+    },
+
 #### wrap ###########
 
     add_with_wrap:func(value, step, limit) {
@@ -64,10 +82,22 @@ ATC = {
     return me.ATC_panel_visibility.getValue() ? math.atan2(tan(fov * 0.00872665) * position, 1) * R2D : 0;
 },
 
+#### mag toggle ###########
+
+     magswap:func() {
+        var tmpmag=0;
+        if(me.ATC_mag_display.getValue()){
+            tmpmag=me.mag_offset;
+            if(tmpmag<0)tmpmag+=360;
+        }
+    me.ATC_heading.setValue(tmpmag);
+},
+
 #### toggle tracking ###########
 
     toggle_tracking: func() {
     me.follow = !me.follow;
+    me.ATC_target_tracking.setValue(me.follow);
 },
 #### target valid ###########
 
@@ -80,10 +110,33 @@ ATC = {
     var range = me.RADAR_range.getValue();
     range *= dir > 0 ? 2 : 0.5;
     if (range < 1) range = 1;
+    if(range>128)range=128;
     me.RADAR_range.setValue(range);
 },
+
+#### get runways ###########
+    get_rwy_list:func(ap_id) {
+        var id=ap_id;
+        var Apt=airportinfo(id);
+        var id_list=[];
+        for(var i=0;i<20;i+=1){
+            setprop("/sim/atc/rwy["~i~"]/id","");
+        }
+        foreach(var r;keys(Apt.runways)){
+            var curr = Apt.runways[r];
+            var buf = sprintf("%s",curr.id);
+            append(id_list,buf);
+        }
+        var num=size(id_list);
+        props.globals.initNode("/sim/atc/num-rwys",num,"INT");
+        for(var i=0;i<num;i+=1){
+            setprop("/sim/atc/rwy["~i~"]/id",id_list[i]);
+        }
+},
+
 #### init on reset ###########
     do_init: func (){
+        print("Initializing...");
         var tmpmag=0;
         me.mag_offset=getprop("environment/magnetic-variation-deg");
         if(me.ATC_mag_display.getValue())tmpmag=tmpmag-me.mag_offset;
@@ -91,17 +144,11 @@ ATC = {
         me.ATC_lat.setValue(me.Tower_lat.getValue());
         me.ATC_lon.setValue(me.Tower_lon.getValue());
         me.ATC_alt.setValue(me.Tower_alt.getValue());
-        me.ATC_num.setIntValue(0);
-        me.ATC_target_id.setValue("");
-        me.ATC_target_alt.setValue(0);
-        me.ATC_target_speed.setValue(0);
-        me.ATC_target_hdg.setValue(0);
-        me.ATC_heading.setValue(tmpmag);
-        aircraft.data.add("/instrumentation/radar/font");
         me.FDM_ON =1;
         setprop("orientation/heading-deg",0);
         setprop("orientation/roll-deg",0);
         setprop("orientation/pitch-deg",0);
+        me.get_rwy_list(getprop("/sim/tower/airport-id"));
     },
 
 #### update target ###########
@@ -192,22 +239,6 @@ setlistener("sim/signals/reinit", func(n) {
     settimer(atc.do_init, 1);
 });
 
-setlistener("sim/tower", func {
-        atc.ATC_lat.setValue(atc.Tower_lat.getValue());
-        atc.ATC_lon.setValue(atc.Tower_lon.getValue());
-        atc.ATC_alt.setValue(atc.Tower_alt.getValue());
-},1,2);
-
-setlistener(atc.ATC_mag_display, func(mg) {
-        var tmpmag=0;
-            if(mg.getValue()){
-            tmpmag=atc.mag_offset;
-            if(tmpmag<0)tmpmag+=360;
-        }
-    atc.ATC_heading.setValue(tmpmag);
-},0,0);
-
-
 
 # based on YASim function euler2orient
 # returned matrix should be transposed
@@ -276,6 +307,7 @@ var update_systems = func {
             atc.ATC_target_speed.setValue(0);
             atc.ATC_target_hdg.setValue(0);
         }
+        atc.wind_check();
         settimer(update_systems, 0);
 }
 

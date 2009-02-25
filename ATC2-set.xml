@@ -45,55 +45,6 @@
                     <label>ATC-2</label>
                     <enabled type="bool">true</enabled>
                     <item>
-                        <label>Toggle compass</label>
-                        <binding>
-                            <command>property-toggle</command>
-                            <property>sim/atc/compass</property>
-                        </binding>
-                    </item>
-                    <item>
-                        <label>True/Mag display</label>
-                        <binding>
-                            <command>property-toggle</command>
-                            <property>sim/atc/mag-compass</property>
-                        </binding>
-                    </item>
-                    <item>
-                        <label>Toggle radar data</label>
-                        <binding>
-                            <command>property-toggle</command>
-                            <property>instrumentation/radar/display-controls/data</property>
-                        </binding>
-                    </item>
-                    <item>
-                        <label>Toggle runways</label>
-                        <binding>
-                            <command>property-toggle</command>
-                            <property>sim/atc/runways-enabled</property>
-                        </binding>
-                    </item>
-                    <item>
-                        <label>Toggle tracking</label>
-                        <binding>
-                            <command>nasal</command>
-                            <script>ATC.atc.toggle_tracking();</script>
-                        </binding>
-                    </item>
-                    <item>
-                        <label>Raise tower</label>
-                        <binding>
-                            <command>nasal</command>
-                            <script>ATC.atc.adjust_alt(50);</script>
-                        </binding>
-                    </item>
-                    <item>
-                        <label>Lower tower</label>
-                        <binding>
-                            <command>nasal</command>
-                            <script>ATC.atc.adjust_alt(-50);</script>
-                        </binding>
-                    </item>
-                    <item>
                         <label>Select Font</label>
                         <binding>
                             <command>nasal</command>
@@ -122,7 +73,31 @@
                 <name>Down</name>
                 <desc>Radar range decrease</desc>
             </key>
-            <line>To move to new airport, use the menu "Location/Tower Position".</line>
+            <key>
+                <name>c</name>
+                <desc>Toggle compass on/off</desc>
+            </key>
+            <key>
+                <name>m</name>
+                <desc>Select Mag/True heading</desc>
+            </key>
+            <key>
+                <name>R</name>
+                <desc>Toggle runways on/off</desc>
+            </key>
+            <key>
+                <name>Ctrl-T</name>
+                <desc>Toggle target tracking</desc>
+            </key>
+            <key>
+                <name>Ctrl-F</name>
+                <desc>Select Font</desc>
+            </key>
+            <key>
+                <name>d</name>
+                <desc>Toggle radar data</desc>
+            </key>
+<line>To move to new airport, use the menu "Location/Tower Position".</line>
             <line>To adjust view position, modify /sim/tower properties in the property browser.</line>
             <line>And last but not least, have fun...</line>
         </help>
@@ -199,6 +174,70 @@
                 <binding>
                     <command>nasal</command>
                     <script>ATC.atc.step_radar_range(-1);</script>
+                </binding>
+            </key>
+            <key n="99">
+                <name>c</name>
+                <desc>Toggle compass</desc>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>sim/atc/compass</property>
+                </binding>
+            </key>
+             <key n="109">
+                <name>m</name>
+                <desc>toggle mag/true</desc>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>sim/atc/mag-compass</property>
+                </binding>
+            </key>
+            <key n="82">
+                <name>R</name>
+                <desc>Toggle runways</desc>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>sim/atc/runways-enabled</property>
+                </binding>
+            </key>
+            <key n="100">
+                <name>d</name>
+                <desc>Toggle radar data</desc>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>instrumentation/radar/display-controls/data</property>
+                </binding>
+            </key>
+            <key n="6">
+                <name>Ctrl-F</name>
+                <desc>Font selector</desc>
+                <binding>
+                            <command>nasal</command>
+                            <script>globals.ATC.select_atc_font();</script>
+                </binding>
+            </key>
+            <key n="20">
+                <name>Ctrl-T</name>
+                <desc>Toggle visual target tracking</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>ATC.atc.toggle_tracking();</script>
+                </binding>
+            </key>
+             <key n="97">
+                <name>a</name>
+                <desc>Raise tower view</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>ATC.atc.adjust_alt(50);</script>
+                </binding>
+            </key>
+             <key n="97">
+                <name>A</name>
+                <desc>Lower tower view</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>ATC.atc.adjust_alt(-50);</script>
                 </binding>
             </key>
         </keyboard>
