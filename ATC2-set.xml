@@ -1,5 +1,12 @@
 <PropertyList >
+<!--
+TO DO:
+display ILS for runways
+display current inHG
 
+
+
+-->
     <sim>
         <description>Air Traffic Control Ver.2</description>
         <author>Syd Adams, Csaba Halasz</author>

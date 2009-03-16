@@ -228,6 +228,36 @@
         </layer>
 
         <layer>
+            <name>barometer</name>
+            <type>text</type>
+            <font>helvetica_bold</font>
+            <point-size>14</point-size>
+            <color>
+                <red>1</red>
+                <green>1</green>
+                <blue>1</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>number-value</type>
+                    <property>environment/pressure-inhg</property>
+                    <format>inHG: %2.2f</format>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>200</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>305</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+
+        <layer>
             <name>label1</name>
             <type>text</type>
             <font>helvetica_bold</font>
