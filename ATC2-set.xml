@@ -65,6 +65,20 @@
                             <script>ATC.atc.goto_carrier(1);</script>
                         </binding>
                     </item>
+                    <item>
+                        <label>Raise tower</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>ATC.atc.adjust_alt(50);</script>
+                        </binding>
+                    </item>
+                    <item>
+                        <label>Lower tower</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>ATC.atc.adjust_alt(-50);</script>
+                        </binding>
+                    </item>
                 </menu>
             </default>
         </menubar>
