@@ -22,7 +22,7 @@
             <path>Aircraft/ATC/instrumentation.xml</path>
         </instrumentation>
 
-        <chase-distance-m>10</chase-distance-m>
+        <chase-distance-m>20</chase-distance-m>
 
         <view n="0">
             <config>
@@ -49,6 +49,20 @@
                         <binding>
                             <command>nasal</command>
                             <script>globals.ATC.select_atc_font();</script>
+                        </binding>
+                    </item>
+                    <item>
+                        <label>Nimitz</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>ATC.atc.goto_carrier(0);</script>
+                        </binding>
+                    </item>
+                    <item>
+                        <label>Eisenhower</label>
+                        <binding>
+                            <command>nasal</command>
+                            <script>ATC.atc.goto_carrier(1);</script>
                         </binding>
                     </item>
                 </menu>

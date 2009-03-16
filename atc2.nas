@@ -30,20 +30,52 @@ ATC = {
         m.ATC_target_hdg = props.globals.initNode("/sim/atc/target-hdg",0.0,"DOUBLE");
         m.ATC_runways = props.globals.initNode("/sim/atc/runways-enabled",1,"BOOL");
         m.ATC_rangering = props.globals.initNode("/sim/atc/compass",1,"BOOL");
-        m.ATC_mag_display = props.globals.initNode("/sim/atc/mag-compass",0,"BOOL");
+        m.ATC_mag_display = props.globals.initNode("/sim/atc/mag-compass",1,"BOOL");
         m.ATC_text = props.globals.initNode("/sim/atc/screen-text",1,"BOOL");
         m.ATC_num =props.globals.initNode("sim/atc/target-number",0."INT");
         m.ATC_panel_visibility = props.globals.initNode("sim/panel/visibility", 1,"BOOL");
+        m.ATC_carrier = props.globals.initNode("/sim/atc/carrier",0,"INT");
         m.RADAR_range =props.globals.initNode("instrumentation/radar/range");
         m.RADAR_id =props.globals.initNode("instrumentation/radar/selected-id");
         m.RADAR_rotate =props.globals.initNode("instrumentation/radar/display-controls/rotate",1,"BOOL");
-        m.FDM_ON = 0;
         m.mag_offset = 0;
         m.follow = m.ATC_target_tracking.getValue();
 
-        m.towerL=setlistener("/sim/tower", func m.do_init(),0,2);
+        m.towerL=setlistener("/sim/tower/airport-id", func m.do_init(),0,0);
+        m.towerAitL=setlistener("/sim/tower/altitude-ft", func m.do_init(),0,0);
         m.magL=setlistener(m.ATC_mag_display,func m.magswap(),1);
         return m;
+    },
+
+#### carrier position###########
+
+    c_update:func(cn) {
+            var lat=0;
+            var lon=0;
+        if(cn==1){
+            lat=getprop("ai/models/carrier[0]/position/latitude-deg");
+            lon=getprop("ai/models/carrier[0]/position/longitude-deg");
+        }elsif(cn==2){
+            lat=getprop("ai/models/carrier[1]/position/latitude-deg");
+            lon=getprop("ai/models/carrier[1]/position/longitude-deg");
+        }
+        me.ATC_lat.setValue(lat);
+        me.ATC_lon.setValue(lon);
+        me.ATC_alt.setValue(me.Tower_alt.getValue());
+        me.Tower_lat.setValue(lat);
+        me.Tower_lon.setValue(lon);
+    },
+
+#### carrier ###########
+
+    goto_carrier:func(num) {
+        if(num==0){
+            me.Tower_id.setValue("NMTZ_C");
+            me.Tower_alt.setValue(250);
+        }elsif(num==1){
+            me.Tower_id.setValue("EZHR_C");
+            me.Tower_alt.setValue(250);
+        };
     },
 
 #### wind ###########
@@ -116,12 +148,14 @@ ATC = {
 
 #### get runways ###########
     get_rwy_list:func(ap_id) {
+        var carrier=me.ATC_carrier.getValue();
         var id=ap_id;
-        var Apt=airportinfo(id);
         var id_list=[];
         for(var i=0;i<20;i+=1){
             setprop("/sim/atc/rwy["~i~"]/id","");
         }
+        if(carrier==0){
+        var Apt=airportinfo(id);
         foreach(var r;keys(Apt.runways)){
             var curr = Apt.runways[r];
             var buf = sprintf("%s",curr.id);
@@ -132,19 +166,37 @@ ATC = {
         for(var i=0;i<num;i+=1){
             setprop("/sim/atc/rwy["~i~"]/id",id_list[i]);
         }
+    }
 },
 
 #### init on reset ###########
     do_init: func (){
         print("Initializing...");
+        var carrier=0;
+        var nm=me.Tower_id.getValue();
+        if(nm=="NMTZ_C"){
+            carrier=1;
+        }elsif(nm=="EZHR_C"){
+            carrier=2;
+        }
+        me.ATC_carrier.setValue(carrier);
         var tmpmag=0;
         me.mag_offset=getprop("environment/magnetic-variation-deg");
         if(me.ATC_mag_display.getValue())tmpmag=tmpmag-me.mag_offset;
         if(tmpmag<0)tmpmag+=360;
-        me.ATC_lat.setValue(me.Tower_lat.getValue());
-        me.ATC_lon.setValue(me.Tower_lon.getValue());
-        me.ATC_alt.setValue(me.Tower_alt.getValue());
-        me.FDM_ON =1;
+        if(carrier==0){
+            me.ATC_lat.setValue(me.Tower_lat.getValue());
+            me.ATC_lon.setValue(me.Tower_lon.getValue());
+            me.ATC_alt.setValue(me.Tower_alt.getValue());
+        }elsif(carrier==1){
+            me.ATC_lat.setValue(getprop("ai/models/carrier[0]/position/latitude-deg"));
+            me.ATC_lon.setValue(getprop("ai/models/carrier[0]/position/longitude-deg"));
+            me.ATC_alt.setValue(250);
+        }elsif(carrier==2){
+            me.ATC_lat.setValue(getprop("ai/models/carrier[1]/position/latitude-deg"));
+            me.ATC_lon.setValue(getprop("ai/models/carrier[1]/position/longitude-deg"));
+            me.ATC_alt.setValue(250);
+        }
         setprop("orientation/heading-deg",0);
         setprop("orientation/roll-deg",0);
         setprop("orientation/pitch-deg",0);
@@ -297,6 +349,7 @@ var tan = func(x) {
 var update_systems = func {
         # verify current target is valid,
         # try to find another if not
+        var carrier=atc.ATC_carrier.getValue();
         var target = atc.step_target(0);
         if (target != nil) {
             atc.update_target(target);
@@ -308,6 +361,11 @@ var update_systems = func {
             atc.ATC_target_hdg.setValue(0);
         }
         atc.wind_check();
+        if(carrier==1){
+            atc.c_update(1);
+        }elsif(carrier==2){
+            atc.c_update(2);
+        }
         settimer(update_systems, 0);
 }
 

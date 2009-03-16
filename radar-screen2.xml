@@ -10,7 +10,13 @@
         <layer>
             <name>ground network</name>
             <condition>
-                <property>sim/atc/runways-enabled</property>
+                <and>
+                    <property>sim/atc/runways-enabled</property>
+                    <equals>
+                        <property>sim/atc/carrier</property>
+                        <value>0</value>
+                    </equals>
+                </and>
             </condition>
             <texture>
                 <path>Aircraft/Instruments/Textures/od_groundradar.rgb</path>
@@ -576,6 +582,12 @@
         </layer>
 
         <layer>
+            <condition>
+                <equals>
+                    <property>sim/atc/carrier</property>
+                    <value>0</value>
+                </equals>
+            </condition>
             <name>Runways</name>
             <type>text</type>
             <font>helvetica_bold</font>
