@@ -44,6 +44,7 @@ display current inHG
             <target-alt type="double">0</target-alt>
             <target-number type="int">-1</target-number>
             <target-range type="double">0</target-range>
+            <min-height type="double" userarchive="y">50</min-height>
         </atc>
 
         <menubar>

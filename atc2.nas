@@ -181,13 +181,16 @@ ATC = {
         }
         me.ATC_carrier.setValue(carrier);
         var tmpmag=0;
+        var minhgt=getprop("sim/atc/min-height");
         me.mag_offset=getprop("environment/magnetic-variation-deg");
         if(me.ATC_mag_display.getValue())tmpmag=tmpmag-me.mag_offset;
         if(tmpmag<0)tmpmag+=360;
         if(carrier==0){
+            var ht = me.Tower_alt.getValue();
+            if(ht<minhgt) ht=minhgt;
             me.ATC_lat.setValue(me.Tower_lat.getValue());
             me.ATC_lon.setValue(me.Tower_lon.getValue());
-            me.ATC_alt.setValue(me.Tower_alt.getValue());
+            me.ATC_alt.setValue(ht);
         }elsif(carrier==1){
             me.ATC_lat.setValue(getprop("ai/models/carrier[0]/position/latitude-deg"));
             me.ATC_lon.setValue(getprop("ai/models/carrier[0]/position/longitude-deg"));
