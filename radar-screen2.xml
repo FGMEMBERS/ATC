@@ -240,7 +240,7 @@
             <chunks>
                 <chunk>
                     <type>number-value</type>
-                    <property>environment/pressure-inhg</property>
+                    <property>environment/pressure-sea-level-inhg</property>
                     <format>inHG: %2.2f</format>
                 </chunk>
             </chunks>
