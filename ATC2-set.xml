@@ -268,7 +268,7 @@ display current inHG
                     <script>ATC.atc.adjust_alt(50);</script>
                 </binding>
             </key>
-             <key n="97">
+             <key n="65">
                 <name>A</name>
                 <desc>Lower tower view</desc>
                 <binding>
