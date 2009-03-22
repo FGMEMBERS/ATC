@@ -13,7 +13,7 @@
                 <property>sim/atc/screen-tint</property>
             </condition>
             <texture>
-                <path>Aircraft/ATC/tint.png</path>
+                <path>Aircraft/ATC/Ver2/tint.png</path>
                 <x1>0</x1>
                 <y1>0</y1>
                 <x2>1</x2>
@@ -73,7 +73,7 @@
                 <property>sim/atc/compass</property>
             </condition>
             <texture>
-                <path>Aircraft/ATC/range.png</path>
+                <path>Aircraft/ATC/Ver2/range.png</path>
                 <x1>0</x1>
                 <y1>0</y1>
                 <x2>1</x2>
@@ -212,7 +212,7 @@
                 <property>sim/atc/compass</property>
             </condition>
             <texture>
-                <path>Aircraft/ATC/arrow.png</path>
+                <path>Aircraft/ATC/Ver2/arrow.png</path>
                 <x1>0</x1>
                 <y1>0</y1>
                 <x2>1</x2>

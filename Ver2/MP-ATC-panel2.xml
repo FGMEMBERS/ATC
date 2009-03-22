@@ -9,7 +9,7 @@ Syd Adams
 <PropertyList>
 
     <name>Panel Background</name>
-    <background>Aircraft/ATC/transparent-bg.rgb</background>
+    <background>Aircraft/ATC/Ver2/transparent-bg.png</background>
     <w>1024</w>
     <h>768</h>
     <y-offset>0</y-offset>

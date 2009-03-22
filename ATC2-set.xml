@@ -15,13 +15,13 @@ display ILS for runways
         <fuel-fraction>0</fuel-fraction>
 
         <model>
-            <path>Aircraft/ATC/atc-tower2.xml</path>
+            <path>Aircraft/ATC/Ver2/atc-tower2.xml</path>
         </model>
         <startup>
-            <splash-texture>Aircraft/ATC/range.png</splash-texture>
+            <splash-texture>Aircraft/ATC/Ver2/range.png</splash-texture>
         </startup>
         <panel>
-            <path>Aircraft/ATC/MP-ATC-panel2.xml</path>
+            <path>Aircraft/ATC/Ver2/MP-ATC-panel2.xml</path>
             <visibility>true</visibility>
         </panel>
         <instrumentation>
@@ -175,7 +175,7 @@ display ILS for runways
             <mode type="string">WX</mode>
             <lightning type="bool">true</lightning>
             <display-mode type="string">plan</display-mode>
-            <echo-texture-path type="string" archive="y">Aircraft/ATC/atcecho.png</echo-texture-path>
+            <echo-texture-path type="string" archive="y">Aircraft/ATC/Ver2/atcecho.png</echo-texture-path>
             <minimized type="bool">false</minimized>
             <heading-marker type="bool">false</heading-marker>
             <limit-deg type="int">180</limit-deg>
@@ -195,7 +195,7 @@ display ILS for runways
 
     <nasal>
         <ATC>
-            <file>Aircraft/ATC/atc2.nas</file>
+            <file>Aircraft/ATC/Ver2/atc2.nas</file>
         </ATC>
     </nasal>
 
