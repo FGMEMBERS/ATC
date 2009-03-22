@@ -1,7 +1,7 @@
 ####    Player Mode ATC ####
 ####  Syd Adams , Csaba Halász  ####
 
-ATC = {
+var ATC = {
     new : func(){
         m = { parents : [ATC] };
         m.AP=nil;
