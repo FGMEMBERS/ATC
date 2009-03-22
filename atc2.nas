@@ -81,12 +81,15 @@ ATC = {
 #### wind ###########
 
     wind_check:func {
+        oldwind = me.ATC_wind.getValue();
         wind =getprop("environment/wind-from-heading-deg");
         if(me.ATC_mag_display.getValue()){
         wind=wind-me.mag_offset;
         if(wind <0)wind=wind+360;
         }
         me.ATC_wind.setValue(wind);
+	if(wind==oldwind) return 0;
+	else return 1;
     },
 
 #### wrap ###########
@@ -137,6 +140,15 @@ ATC = {
         return target.getNode("valid").getValue() and target.getNode("radar/in-range").getValue();
 },
 
+#### target prefix for mp chat ############
+    get_target_chat_prefix: func() {
+        tgt = me.ATC_target_id.getValue();
+	if(tgt != "")
+	   val = sprintf("%s: ",tgt);
+	else val = "";
+	return val;
+},
+
 #### radar range ###########
     step_radar_range:func(dir) {
     var range = me.RADAR_range.getValue();
@@ -163,8 +175,34 @@ ATC = {
         }
         var num=size(id_list);
         props.globals.initNode("/sim/atc/num-rwys",num,"INT");
+	wind = getprop("environment/wind-from-heading-deg")-me.mag_offset;
+        if(wind <0)wind=wind+360;
+	windspeed = getprop("environment/wind-speed-kt");
         for(var i=0;i<num;i+=1){
-            setprop("/sim/atc/rwy["~i~"]/id",id_list[i]);
+	    var head_component = 0;
+	    var status = "";
+	    var rw_heading_magnetic = 100*(id_list[i][0]-48)+10*(id_list[i][1]-48);
+	    difference = rw_heading_magnetic - wind;
+	    if(difference<0) difference = difference*-1;
+	    if(windspeed < 3) status="****"; # Winds calm, any runway is OKay
+	    else {
+	      head_component = math.cos(difference * D2R);
+	      if(head_component >= 0.8) status="*****";
+	      elsif(head_component > 0.5) status="****";
+	      elsif(head_component > 0.2) status="***";
+	      elsif(head_component > 0) status="**";
+	      elsif(head_component == 0) status="*";
+	      else {
+	        if((head_component * windspeed) < -10) # too strong tailwinds
+                    status = "*";
+		else {
+                  if(head_component > -0.75) status = "**";
+		  else status = "***"
+		}
+	      }
+	    }
+	    runway_info = sprintf("%5s  %s",status, id_list[i]);
+            setprop("/sim/atc/rwy["~i~"]/id",runway_info);
         }
     }
 },
@@ -204,6 +242,7 @@ ATC = {
         setprop("orientation/roll-deg",0);
         setprop("orientation/pitch-deg",0);
         me.get_rwy_list(getprop("/sim/tower/airport-id"));
+	setprop("sim/atc/mag-compass",1); # Set default to magnetic compass. 
     },
 
 #### update target ###########
@@ -246,9 +285,10 @@ ATC = {
     me.ATC_target_id.setValue(MP.getNode("callsign").getValue());
     me.ATC_target_range.setValue(MP.getNode("radar/range-nm").getValue());
     me.ATC_target_speed.setValue(MP.getNode("velocities/true-airspeed-kt").getValue());
-    var maghdg=MP.getNode("orientation/true-heading-deg").getValue();
-    maghdg=maghdg-me.mag_offset;
-    me.ATC_target_hdg.setValue(maghdg);
+    var truhdg=MP.getNode("orientation/true-heading-deg").getValue();
+    var mphdg =truhdg;
+    if(me.ATC_mag_display.getValue())mphdg=mphdg-me.mag_offset;
+    me.ATC_target_hdg.setValue(mphdg);
     },
 
 #### step target ###########
@@ -363,7 +403,8 @@ var update_systems = func {
             atc.ATC_target_speed.setValue(0);
             atc.ATC_target_hdg.setValue(0);
         }
-        atc.wind_check();
+        if(atc.wind_check()) atc.get_rwy_list(getprop("/sim/tower/airport-id"));
+
         if(carrier==1){
             atc.c_update(1);
         }elsif(carrier==2){

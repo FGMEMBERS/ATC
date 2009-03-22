@@ -8,6 +8,22 @@
     <layers>
 
         <layer>
+            <name>tint</name>
+            <condition>
+                <property>sim/atc/screen-tint</property>
+            </condition>
+            <texture>
+                <path>Aircraft/ATC/tint.png</path>
+                <x1>0</x1>
+                <y1>0</y1>
+                <x2>1</x2>
+                <y2>1</y2>
+            </texture>
+            <w>1024</w>
+            <h>768</h>
+        </layer>
+
+        <layer>
             <name>ground network</name>
             <condition>
                 <and>
@@ -508,7 +524,7 @@
                 <chunk>
                     <type>number-value</type>
                     <property>sim/atc/target-hdg</property>
-                    <format>Mag-hdg:%3.0f</format>
+                    <format>AI-Hdg:%3.0f</format>
                 </chunk>
             </chunks>
             <transformations>
@@ -630,7 +646,7 @@
             <chunks>
                 <chunk>
                     <type>literal</type>
-                    <text>RWYs</text>
+                    <text>Usability / RWYs</text>
                 </chunk>
             </chunks>
             <transformations>

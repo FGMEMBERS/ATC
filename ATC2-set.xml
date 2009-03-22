@@ -2,7 +2,6 @@
 <!--
 TO DO:
 display ILS for runways
-display current inHG
 
 
 
@@ -44,7 +43,8 @@ display current inHG
             <target-alt type="double">0</target-alt>
             <target-number type="int">-1</target-number>
             <target-range type="double">0</target-range>
-            <min-height type="double" userarchive="y">50</min-height>
+            <min-height type="double" userarchive="y">100</min-height>
+            <screen-tint type="bool">0</screen-tint>
         </atc>
 
         <menubar>
@@ -77,14 +77,21 @@ display current inHG
                         <label>Raise tower</label>
                         <binding>
                             <command>nasal</command>
-                            <script>ATC.atc.adjust_alt(50);</script>
+                            <script>ATC.atc.adjust_alt(10);</script>
                         </binding>
                     </item>
                     <item>
                         <label>Lower tower</label>
                         <binding>
                             <command>nasal</command>
-                            <script>ATC.atc.adjust_alt(-50);</script>
+                            <script>ATC.atc.adjust_alt(-10);</script>
+                        </binding>
+                    </item>
+                    <item>
+                        <label>Screen tint</label>
+                        <binding>
+                            <command>property-toggle</command>
+                            <property>sim/atc/screen-tint</property>
                         </binding>
                     </item>
                 </menu>
@@ -126,6 +133,18 @@ display current inHG
                 <desc>Toggle target tracking</desc>
             </key>
             <key>
+                <name>Ctrl-A</name>
+                <desc>Raise tower view</desc>
+            </key>
+            <key>
+                <name>Ctrl-Z</name>
+                <desc>Lower tower view</desc>
+            </key>
+            <key>
+                <name>t</name>
+                <desc>Send message to current target</desc>
+            </key>
+            <key>
                 <name>Ctrl-F</name>
                 <desc>Select Font</desc>
             </key>
@@ -135,6 +154,7 @@ display current inHG
             </key>
 <line>To move to new airport, use the menu "Location/Tower Position".</line>
             <line>To adjust view position, modify /sim/tower properties in the property browser.</line>
+            <line>Note: Runway usability is calculated solely on the basis of reported winds. </line>
             <line>And last but not least, have fun...</line>
         </help>
 
@@ -146,7 +166,7 @@ display current inHG
             <mode-control type="int">1</mode-control>
             <display-controls>
                 <WX type="bool">false</WX>
-                <pos type="bool">false</pos>
+                <pos type="bool">true</pos>
                 <data type="bool">true</data>
                 <symbol type="bool">true</symbol>
             </display-controls>
@@ -155,12 +175,13 @@ display current inHG
             <mode type="string">WX</mode>
             <lightning type="bool">true</lightning>
             <display-mode type="string">plan</display-mode>
+            <echo-texture-path type="string" archive="y">Aircraft/ATC/atcecho.png</echo-texture-path>
             <minimized type="bool">false</minimized>
             <heading-marker type="bool">false</heading-marker>
             <limit-deg type="int">180</limit-deg>
             <font>
                 <name type="string">helvetica_bold.txf</name>
-                <size type="float">4</size>
+                <size type="float">3</size>
                 <line-spacing type="float">0.25</line-spacing>
                 <color>
                     <red type="float">0</red>
@@ -260,23 +281,31 @@ display current inHG
                     <script>ATC.atc.toggle_tracking();</script>
                 </binding>
             </key>
-             <key n="97">
-                <name>a</name>
+             <key n="1">
+                <name>Ctrl-A</name>
                 <desc>Raise tower view</desc>
                 <binding>
                     <command>nasal</command>
-                    <script>ATC.atc.adjust_alt(50);</script>
+                    <script>ATC.atc.adjust_alt(10);</script>
                 </binding>
             </key>
-             <key n="65">
-                <name>A</name>
+             <key n="26">
+                <name>Ctrl-Z</name>
                 <desc>Lower tower view</desc>
                 <binding>
                     <command>nasal</command>
-                    <script>ATC.atc.adjust_alt(-50);</script>
+                    <script>ATC.atc.adjust_alt(-10);</script>
                 </binding>
-            </key>
-        </keyboard>
+            </key> 
+             <key n="116">
+                <name>t</name>
+                <desc>Send Message to Target</desc>
+                <binding>
+                    <command>nasal</command>
+                    <script>multiplayer.compose_message(ATC.atc.get_target_chat_prefix());</script>
+                </binding>
+            </key> 
+</keyboard>
     </input>
 
 </PropertyList>
