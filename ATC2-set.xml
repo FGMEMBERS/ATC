@@ -14,6 +14,8 @@ display ILS for runways
         <aero></aero>
         <fuel-fraction>0</fuel-fraction>
 
+        <variant-of>ATC</variant-of>
+
         <model>
             <path>Aircraft/ATC/Ver2/atc-tower2.xml</path>
         </model>
@@ -296,7 +298,7 @@ display ILS for runways
                     <command>nasal</command>
                     <script>ATC.atc.adjust_alt(-10);</script>
                 </binding>
-            </key> 
+            </key>
              <key n="116">
                 <name>t</name>
                 <desc>Send Message to Target</desc>
@@ -304,7 +306,7 @@ display ILS for runways
                     <command>nasal</command>
                     <script>multiplayer.compose_message(ATC.atc.get_target_chat_prefix());</script>
                 </binding>
-            </key> 
+            </key>
 </keyboard>
     </input>
 
